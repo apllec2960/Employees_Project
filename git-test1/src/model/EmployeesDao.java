@@ -14,7 +14,7 @@ public class EmployeesDao {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName("org.maria.jdbc.Driver");
+			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/employees","root","java1234");
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
@@ -32,6 +32,7 @@ public class EmployeesDao {
 				e.printStackTrace(); //예외 발생시 예외를 콘솔창에 출력해줌.
 			}
 		}
+		System.out.println(count);
 		return count;
 		}
 	}
