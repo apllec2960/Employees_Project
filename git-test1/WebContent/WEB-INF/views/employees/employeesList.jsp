@@ -10,25 +10,26 @@
 <body>
 <h1>사원목록</h1>
 	<div>
-		<form method="post" action="${pageContext.request.contextPath}/employees/getEmployeesList">
-			<select name="limit">
-			<c:forEach var="i" begin = "10" end = "50" step = "10">
-				<option value="${i}">${i}</option>
-			 </c:forEach>
+		<form method="get" action="${pageContext.request.contextPath}/employees/getEmployeesList">
+			<select name="limit">	 <!-- 페이지당 보여줄 개수선택 -->
+				<c:forEach var="i" begin="10" end="50" step="10">  <!--변수, 시작, 끝, 반복하는 수 -->
+					<option value="${i}">${i}</option>	
+				</c:forEach>
 			 	 </select>개 까지
 			 <button type="submit">확인</button>
 		</form>
 	</div>
 	
-	
 	<table>
 		<thead>
-			<th>사원 번호</th>
-			<th>사원 생일</th>
-			<th>사원 성</th>
-			<th>사원 이름</th>
-			<th>사원 성별</th>
-			<th>입사 날짜</th>
+			<tr>
+				<th>사원 번호</th>
+				<th>사원 생일</th>
+				<th>사원 성</th>
+				<th>사원 이름</th>
+				<th>사원 성별</th>
+				<th>입사 날짜</th>
+			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="employees" items="${list}">

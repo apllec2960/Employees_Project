@@ -11,6 +11,7 @@ import vo.Employees;
 
 public class EmployeesDao {
 	
+	//리스트를 출력해주는 메소드이며, 매개변수 limit가 employeesList에서 출력하고자 하는 개수를 나타냄.
 	public List<Employees> selectEmployeesListByLimit(int limit){
 		System.out.println("selectEmployeesListByLimit param limit"+ limit);
 		List<Employees> list = new ArrayList<Employees>();
@@ -25,12 +26,13 @@ public class EmployeesDao {
 			stmt =conn.prepareStatement(sql);
 			stmt.setInt(1,limit);
 			rs = stmt.executeQuery();
+			
 			while(rs.next()) {
 				Employees employees = new Employees();
 				employees.setEmpNo(rs.getInt("emp_no"));
 				employees.setBirthDate(rs.getString("birth_date"));
-				employees.setFirstName(rs.getString("first_date"));
-				employees.setLastName(rs.getString("last_date"));
+				employees.setFirstName(rs.getString("first_name"));
+				employees.setLastName(rs.getString("last_name"));
 				employees.setGender(rs.getString("gender"));
 				employees.setHireDate(rs.getString("hire_date"));
 				list.add(employees);
