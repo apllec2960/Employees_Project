@@ -9,7 +9,17 @@
 <body>
 	<h1>Index</h1>
 	<div>
-		employees table total row Count : <%=request.getAttribute("employeesRowCount")%>
+		<ul>
+			<li><a href="${pageContext.request.contextPath}/employees/getEmployeesList">사원 목록</a></li>
+			<li><a href="${pageContext.request.contextPath}/departments/getDepartmentsList">부서 목록</a></li>
+		</ul>
+	</div>
+	
+	<div>
+		표현식 :employees table total row Count : <%=request.getAttribute("employeesRowCount")%>
+		<br>
+		el : employees table total row Count : ${employeesRowCount}
+		
 	</div>
 </body>
 </html>

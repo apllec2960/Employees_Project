@@ -15,14 +15,14 @@ import model.EmployeesDao;
  * Servlet implementation class IndexServle
  */
 @WebServlet("/index")
-public class IndexServle extends HttpServlet {
+public class IndexServlet extends HttpServlet {
 	private EmployeesDao employeesDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("/index URL 요청");
 		
 		//EmployeesDao employeesDao = new EmployeesDao();
-		this.employeesDao = new EmployeesDao();	//모델을 호출해서 값을 가져옴.
-		int employeesRowCount =  employeesDao.selectEmployeesCount();
+		this.employeesDao = new EmployeesDao();	//모델(Dao)을 호출해서 값을 가져옴.
+		int employeesRowCount =  employeesDao.selectEmployeesCount(); //employees 사원의 모든 수를 employeesRowCount변수에 저장.
 		System.out.println(employeesRowCount);
 		// /WEB-INF/views/index.jsp
 		/* 방법 1
