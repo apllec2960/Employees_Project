@@ -20,41 +20,42 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>사원목록</h1>
-	<div>
+<h1 class="text-center">사원목록</h1>
+	<div class="text-right">
 		<form method="get" action="${pageContext.request.contextPath}/employees/getEmployeesList">
 			<select name="limit">	 <!-- 페이지당 보여줄 개수선택 -->
 				<c:forEach var="i" begin="10" end="50" step="10">  <!--변수, 시작, 끝, 반복하는 수 -->
 					<option value="${i}">${i}</option>	
 				</c:forEach>
-			 	 </select>개 까지
-			 <button type="submit">확인</button>
+			</select>개
+			<button type="submit">보기</button>
 		</form>
 	</div>
-	
-	<table>
-		<thead>
-			<tr>
-				<th>사원 번호</th>
-				<th>사원 생일</th>
-				<th>사원 성</th>
-				<th>사원 이름</th>
-				<th>사원 성별</th>
-				<th>입사 날짜</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="employees" items="${list}">
+	<div>
+		<table class= "table table-bordered">
+			<thead class="thead-dark">
 				<tr>
-					<td>${employees.empNo }</td>
-					<td>${employees.birthDate }</td>
-					<td>${employees.firstName }</td>
-					<td>${employees.lastName }</td>
-					<td>${employees.gender }</td>
-					<td>${employees.hireDate }</td>
+					<th>사원 번호</th>
+					<th>사원 생일</th>
+					<th>사원 성</th>
+					<th>사원 이름</th>
+					<th>사원 성별</th>
+					<th>입사 날짜</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<c:forEach var="employees" items="${list}">
+					<tr>
+						<td>${employees.empNo }</td>
+						<td>${employees.birthDate }</td>
+						<td>${employees.firstName }</td>
+						<td>${employees.lastName }</td>
+						<td>${employees.gender }</td>
+						<td>${employees.hireDate }</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

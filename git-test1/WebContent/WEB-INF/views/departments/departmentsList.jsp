@@ -21,19 +21,19 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<h1>부서목록</h1>
+	<h1 class="text-center">부서목록</h1>
 	<!-- List<Departments> list = (List<Departments>)request.getAttribute("list"); -->
 	 <!-- ${list} -->
-	<table>
-		<thead>
-			<tr>
+	<table class="table table-bordered">
+		<thead class="thead-dark">
+			<tr class="text-center">
 				<th>부서 번호</th>
 				<th>부서 명</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="departments" items="${list}" > <!--  for(Departments departments : list) {-->
-				<tr>
+				<tr class="text-center">
 					<td>${departments.deptNo}</td> <!-- departments.getDeptNo() -->
 					<td>${departments.deptName}</td>
 				</tr>
