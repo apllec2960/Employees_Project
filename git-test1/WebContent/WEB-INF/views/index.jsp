@@ -29,6 +29,39 @@
 <body>
 	<h1 class = "text-center">Index</h1>
 	
+	<div>
+		<table class="table table-bordered">
+			<tr class= "text-center">
+				<th>테이블 이름</th>
+				<th>전체 행의 수</th>
+			</tr>
+			<tr>
+				<td>Employees</td>
+				<td>${employeesRowCount}</td>
+			</tr>
+			<tr>
+				<td>Departments</td>
+				<td>${departmentsRowCount}</td>
+			</tr>
+			<tr>
+				<td>Dept_emp</td>
+				<td>${deptEmpRowCount}</td>
+			</tr>
+			<tr>
+				<td>Dept_manager</td>
+				<td>${deptManagerRowCount}</td>
+			</tr>
+			<tr>
+				<td>Salaries</td>
+				<td>${salariesRowCount}</td>
+			</tr>
+			<tr>
+				<td>Titles</td>
+				<td>${titlesRowCount}</td>
+			</tr>
+		</table>
+	</div>
+	
 	<div class="text-center">
 		표현식 :employees table total row Count : <%=request.getAttribute("employeesRowCount")%>
 		<br>
