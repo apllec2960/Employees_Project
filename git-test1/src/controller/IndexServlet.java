@@ -43,27 +43,27 @@ public class IndexServlet extends HttpServlet {
 		 */
 		departmentsDao = new DepartmentsDao();
 		int departmentsRowCount = departmentsDao.selectDepartmentsRowCount();
-		System.out.println("departmentsRowCount : "+departmentsRowCount);
+		System.out.println("indexServlet departmentsRowCount : "+departmentsRowCount);
 		request.setAttribute("departmentsRowCount", departmentsRowCount);
 		
 		deptEmpDao = new DeptEmpDao();
 		int deptEmpRowCount = deptEmpDao.selectDeptEmpRowCount();
-		System.out.println("deptEmpRowCount : "+deptEmpRowCount);
+		System.out.println("indexServlet deptEmpRowCount : "+deptEmpRowCount);
 		request.setAttribute("deptEmpRowCount", deptEmpRowCount);
 		
 		deptManagerDao = new DeptManagerDao();
 		int deptManagerRowCount = deptManagerDao.selectDeptManagerRowCount();
-		System.out.println("deptManagerRowCount : "+deptManagerRowCount);
+		System.out.println("indexServlet deptManagerRowCount : "+deptManagerRowCount);
 		request.setAttribute("deptManagerRowCount",deptManagerRowCount);
 		
 		salariesDao = new SalariesDao();
 		int salariesRowCount = salariesDao.selectSalariesRowCount();
-		System.out.println("salariesRowCount : "+salariesRowCount);
+		System.out.println("indexServlet salariesRowCount : "+salariesRowCount);
 		request.setAttribute("salariesRowCount", salariesRowCount );
 		
 		titlesDao = new TitlesDao();
 		int titlesRowCount = titlesDao.selectTitlesRowCount();
-		System.out.println("titlesRowCount : "+titlesRowCount);
+		System.out.println("indexServlet titlesRowCount : "+titlesRowCount);
 		request.setAttribute("titlesRowCount",titlesRowCount );
 		
 		

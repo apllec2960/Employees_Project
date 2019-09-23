@@ -18,6 +18,7 @@ public class GetEmployeesListServlet extends HttpServlet {
 	private EmployeesDao employeesDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		int limit = 10;	//보여줄 개수.
 		if(request.getParameter("limit")!=null) {
 			limit = Integer.parseInt(request.getParameter("limit"));
