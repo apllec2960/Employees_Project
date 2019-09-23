@@ -22,6 +22,7 @@
 </head>
 <body>
 	<h1 class="text-center">부서목록</h1>
+	<a href ="${pageContext.request.contextPath}/">홈으로</a>
 	<!-- List<Departments> list = (List<Departments>)request.getAttribute("list"); -->
 	 <!-- ${list} -->
 	<table class="table table-bordered">

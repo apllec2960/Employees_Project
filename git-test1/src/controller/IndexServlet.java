@@ -19,7 +19,7 @@ import model.TitlesDao;
 /**
  * Servlet implementation class IndexServle
  */
-@WebServlet("/index")
+@WebServlet({"/","/index"})
 public class IndexServlet extends HttpServlet {
 	private EmployeesDao employeesDao;
 	private DepartmentsDao departmentsDao;

@@ -21,6 +21,9 @@
 </head>
 <body>
 <h1 class="text-center">사원목록</h1>
+
+<a href ="${pageContext.request.contextPath}/">홈으로</a>
+
 	<div class="text-right">
 		<form method="get" action="${pageContext.request.contextPath}/employees/getEmployeesList">
 			<select name="limit">	 <!-- 페이지당 보여줄 개수선택 -->
