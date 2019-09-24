@@ -75,9 +75,17 @@
 			<li><a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=asc">오름차순(limit50)</a>	</li>
 			<li><a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=desc">내림차순(limit50)</a></li>
 			<li><a href="${pageContext.request.contextPath}/salaries/getSalariesStatistics">연봉통계</a></li>
+			<li><a href="${pageContext.request.contextPath}/titles/getTitlesListDistinct">업무목록</a></li>
+			<li><a href="${pageContext.request.contextPath}/employees/getEmployeesCountByGender">사원 수(성별 group by gender)</a></li>
+			<li><a href="${pageContext.request.contextPath}/departments/getDepartmentsCountByDeptNo">부서별 인원</a></li>
 		</ul>
-
-	 	
+	</div>
+	<div>
+		<form method="post" action="${pageContext.request.contextPath}/employees/getEmployeesListBetween">
+			<input type = "number" name="begin">~<input type="number" name="end">
+			<button type="submit">사원목록 beween ... and ...</button>
+			(${MaxEmpNo}~${MinEmpNo})
+		</form>
 	</div>
 </body>
 </html>

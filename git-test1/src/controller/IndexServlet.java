@@ -36,6 +36,10 @@ public class IndexServlet extends HttpServlet {
 		int employeesRowCount =  employeesDao.selectEmployeesCount(); //employees 사원의 모든 수를 employeesRowCount변수에 저장.
 		System.out.println("employeesRowCount : "+employeesRowCount);
 		request.setAttribute("employeesRowCount", employeesRowCount);
+		
+		int MaxEmpNo = employeesDao.selectEmpNo("max");
+		int MinEmpNo = employeesDao.selectEmpNo("min");
+		
 		// /WEB-INF/views/index.jsp
 		/* 방법 1
 		 * RequestDispatcher rd =

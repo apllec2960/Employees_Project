@@ -21,6 +21,7 @@ public class TitlesDao {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DBHelper.getConnection();
+			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			while(rs.next()) {
 				list.add(rs.getString("title"));

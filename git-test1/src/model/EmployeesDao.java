@@ -6,12 +6,113 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import db.DBHelper;
 import vo.Employees;
 
 public class EmployeesDao {
+	
+	//성별별 수를 구하는 메소드 
+	public List<Map<String, Object>> selectEmployeesCountByGender(){
+		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		String sql = "SELECT gender, COUNT(gender) cnt FROM employees GROUP BY gender";
+		ResultSet rs = null;
+		try {
+			conn = DBHelper.getConnection();
+			stmt = conn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("gender", rs.getString("gender"));
+				map.put("cnt", rs.getString("cnt"));
+				list.add(map);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+		DBHelper.close(conn, stmt, rs);	
+		
+		}
+		return list;
+	}
+	
+	
+	//시작값과 끝값을 입력받아  입력된 번호의 사원을 출력해주는 메소드
+	public List<Employees> selectEmployeesListBetween(int begin, int end){
+		System.out.println("selectEmployeesListByLimit param begin :" + begin +" end :"+ end);
+		List<Employees> list = new ArrayList<Employees>();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = "select emp_no, birth_date, first_name, last_name, gender, hire_date  from employees where emp_no between ? and ? order by emp_no asc";
+		
+		try {
+			conn = DBHelper.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, begin);
+			stmt.setInt(2, end);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				Employees employees = new Employees();
+				employees.setEmpNo(rs.getInt("emp_no"));
+				employees.setBirthDate(rs.getString("birth_date"));
+				employees.setFirstName(rs.getString("first_name"));
+				employees.setLastName(rs.getString("last_name"));
+				employees.setGender(rs.getString("gender"));
+				employees.setHireDate(rs.getString("hire_date"));
+				list.add(employees);
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				rs.close();
+				stmt.close();
+				conn.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	//max값과 min값을 출력해주는 메소드 ( index페이지에 데이터베이스에 등록되어있는 사원번호 max min을 나타냄.)
+	public static int selectEmpNo(String str) {
+		int empNo = 0;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		String sql = null;
+		ResultSet rs =null;
+		
+		if(str.equals("max")) {
+			sql = "SELECT MAX(emp_no) FROM employees";	//str이 max라면 employees최대값
+		}else if(str.equals("min")){
+			sql = "SElECT MIN(emp_no) FROM employees";	//str이 min이라면 최소값
+		}
+		
+		try {
+			conn = DBHelper.getConnection();
+			stmt = conn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				rs.close();
+				stmt.close();
+				conn.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return 0;
+	}
 	
 	//정렬된 리스트를 보여주는 메소드 : 조건은 first_name
 	public List<Employees> selectEmployeesListOrderBy(String order){
