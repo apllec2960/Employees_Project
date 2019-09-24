@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import db.DBHelper;
 import vo.Employees;
 
 public class EmployeesDao {
@@ -26,8 +27,7 @@ public class EmployeesDao {
 			sql = "SELECT emp_no, birth_date, first_name, last_name, gender, hire_date FROM employees ORDER BY first_name desc LIMIT 50";
 		}
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/employees","root","java1234");
+			conn = DBHelper.getConnection();
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			
@@ -44,13 +44,7 @@ public class EmployeesDao {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				rs.close();
-				stmt.close();
-				conn.close();
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
+			DBHelper.close(conn, stmt, rs);
 		}
 		return list;
 	}
@@ -67,8 +61,7 @@ public class EmployeesDao {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/employees","root","java1234");
+			conn = DBHelper.getConnection();
 			stmt =conn.prepareStatement(sql);
 			stmt.setInt(1,limit);
 			rs = stmt.executeQuery();
@@ -86,13 +79,7 @@ public class EmployeesDao {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally{
-			try {
-				rs.close();
-				stmt.close();
-				conn.close();
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
+			DBHelper.close(conn, stmt, rs);
 		}
 		return list;
 	}
@@ -107,8 +94,7 @@ public class EmployeesDao {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/employees","root","java1234");
+			conn = DBHelper.getConnection();
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			if(rs.next()) { //iterator가 구현되어있는 객체.
@@ -117,13 +103,7 @@ public class EmployeesDao {
 		}catch(Exception e) {	//자바의 변수 생명주기는 { 블럭 } 내에서만.
 			e.printStackTrace(); //예외 발생시 예외를 콘솔창에 출력해줌.
 		}finally {
-			try {
-				rs.close();
-				stmt.close();
-				conn.close();
-			}catch(Exception e) {
-				e.printStackTrace(); //예외 발생시 예외를 콘솔창에 출력해줌.
-			}
+			DBHelper.close(conn, stmt, rs);
 		}
 		System.out.println(count);
 		return count;

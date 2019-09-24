@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import db.DBHelper;
 import vo.Departments;
 
 public class DepartmentsDao {
@@ -20,8 +21,7 @@ public class DepartmentsDao {
 			ResultSet rs = null;
 			
 			try {
-				Class.forName("org.mariadb.jdbc.Driver");
-				conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/employees","root","java1234");
+				conn = DBHelper.getConnection();
 				stmt = conn.prepareStatement(sql);
 				rs = stmt.executeQuery();
 				if(rs.next()) { //iterator가 구현되어있는 객체.
@@ -30,13 +30,7 @@ public class DepartmentsDao {
 			}catch(Exception e) {	//자바의 변수 생명주기는 { 블럭 } 내에서만.
 				e.printStackTrace(); //예외 발생시 예외를 콘솔창에 출력해줌.
 			}finally {
-				try {
-					rs.close();
-					stmt.close();
-					conn.close();
-				}catch(Exception e) {
-					e.printStackTrace(); //예외 발생시 예외를 콘솔창에 출력해줌.
-				}
+				DBHelper.close(conn, stmt, rs);
 			}
 			System.out.println(count);
 			return count;
@@ -51,8 +45,7 @@ public class DepartmentsDao {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/employees","root","java1234");
+			conn = DBHelper.getConnection();
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			while(rs.next()) {
@@ -64,13 +57,7 @@ public class DepartmentsDao {
 			}catch(Exception e) {
 					e.printStackTrace();
 				}finally {
-					try {
-						rs.close();
-						stmt.close();
-						conn.close();
-					}catch(Exception e) {
-						e.printStackTrace();
-				}
+					DBHelper.close(conn, stmt, rs);
 			}	
 		return list;
 	}

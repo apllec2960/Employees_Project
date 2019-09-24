@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import db.DBHelper;
+
 public class DeptEmpDao {
 	//deptEmp 테이블의 행의수를 구하는 메소드
 		public int selectDeptEmpRowCount() {
@@ -14,8 +16,7 @@ public class DeptEmpDao {
 			ResultSet rs = null;
 			String sql = "SELECT COUNT(*) cnt FROM dept_emp";
 			try {
-				Class.forName("org.mariadb.jdbc.Driver");
-				conn = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/employees","root","java1234");
+				conn = DBHelper.getConnection();
 				stmt = conn.prepareStatement(sql);
 				rs = stmt.executeQuery();
 				if(rs.next()) {
@@ -24,13 +25,7 @@ public class DeptEmpDao {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}finally {
-				try {
-					rs.close();
-					stmt.close();
-					conn.close();
-				}catch (Exception e) {
-					e.printStackTrace();
-				}
+				DBHelper.close(conn, stmt, rs);
 			}	
 			return count;
 	}

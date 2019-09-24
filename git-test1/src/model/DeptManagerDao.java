@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import db.DBHelper;
+
 public class DeptManagerDao {
 	
 	//deptManager 테이블의 행의 수를 구하는 메소드
@@ -15,8 +17,7 @@ public class DeptManagerDao {
 		ResultSet rs = null;
 		String sql = "SELECT COUNT(*) cnt FROM dept_manager";
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/employees","root","java1234");
+			conn = DBHelper.getConnection();
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			if(rs.next()) {
@@ -25,13 +26,7 @@ public class DeptManagerDao {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				rs.close();
-				stmt.close();
-				conn.close();
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
+			DBHelper.close(conn, stmt, rs);
 		}	
 		return count;
 }

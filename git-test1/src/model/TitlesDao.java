@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import db.DBHelper;
+
 public class TitlesDao {
 	
 	//titles테이블의 중복값을 제거한 title을 출력하는 메소드
@@ -18,8 +20,7 @@ public class TitlesDao {
 		ResultSet rs = null;
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/employees","root","java1234");
-			stmt= conn.prepareStatement(sql);
+			conn = DBHelper.getConnection();
 			rs = stmt.executeQuery();
 			while(rs.next()) {
 				list.add(rs.getString("title"));
@@ -27,13 +28,7 @@ public class TitlesDao {
 		}catch(Exception e) {
 				e.printStackTrace();
 			}finally {
-				try {
-					rs.close();
-					stmt.close();
-					conn.close();
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
+				DBHelper.close(conn, stmt, rs);
 			}
 		return list;
 		}
@@ -47,8 +42,7 @@ public class TitlesDao {
 		ResultSet rs = null;
 		String sql = "SELECT COUNT(*) cnt FROM titles";
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/employees","root","java1234");
+			conn = DBHelper.getConnection();
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			if(rs.next()) {
@@ -57,13 +51,8 @@ public class TitlesDao {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				rs.close();
-				stmt.close();
-				conn.close();
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
+
+			DBHelper.close(conn, stmt, rs);
 		}	
 		return count;
 }
