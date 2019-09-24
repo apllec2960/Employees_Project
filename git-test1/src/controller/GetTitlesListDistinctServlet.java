@@ -14,7 +14,7 @@ import model.TitlesDao;
 /**
  * Servlet implementation class GetTitlesListDistinctServlet
  */
-@WebServlet("/salaries/getSalariesStatistics")
+@WebServlet("/titles/getTitlesListDistinct")
 public class GetTitlesListDistinctServlet extends HttpServlet {
 	private TitlesDao titlesDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

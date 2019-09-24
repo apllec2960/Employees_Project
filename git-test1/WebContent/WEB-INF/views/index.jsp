@@ -77,7 +77,9 @@
 	<div>first_name 정렬
 		<a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=asc">오름차순(limit50)</a>	
 		<a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=desc">오름차순(limit50)</a>			
-		
+	</div>
+	<div>
+	 연봉
 	</div>
 </body>
 </html>
