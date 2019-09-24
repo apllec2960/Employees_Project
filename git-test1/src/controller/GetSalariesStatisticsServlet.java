@@ -25,7 +25,7 @@ public class GetSalariesStatisticsServlet extends HttpServlet {
 		Map<String, Long> map = salariesDao.selectSalariesStatistics();
 		
 		request.setAttribute("map",map);
-		request.getRequestDispatcher("/WEB-INF/views/salaries/salariesStatistics.jsp");
+		request.getRequestDispatcher("/WEB-INF/views/salaries/salariesStatistics.jsp").forward(request, response);
 	}
 
 }

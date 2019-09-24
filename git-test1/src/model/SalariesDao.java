@@ -24,12 +24,12 @@ public class SalariesDao {
 		 stmt = conn.prepareStatement(sql);
 		 rs = stmt.executeQuery();
 		 if(rs.next()) {
-			 map.put("COUNT", rs.getLong("salary"));
-			 map.put("SUM", rs.getLong("salary"));
-			 map.put("AVG", rs.getLong("salary"));
-			 map.put("MAX", rs.getLong("salary"));
-			 map.put("MIN", rs.getLong("salary"));
-			 map.put("STD", rs.getLong("salary"));
+			 map.put("COUNT", rs.getLong("COUNT(salary)"));
+			 map.put("SUM", rs.getLong("SUM(salary)"));
+			 map.put("AVG", rs.getLong("AVG(salary)"));
+			 map.put("MAX", rs.getLong("MAX(salary)"));
+			 map.put("MIN", rs.getLong("MIN(salary)"));
+			 map.put("STD", rs.getLong("STD(salary)"));
 		 }
 		}catch(Exception e){
 			e.printStackTrace();

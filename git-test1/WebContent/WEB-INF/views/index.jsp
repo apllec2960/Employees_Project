@@ -72,14 +72,12 @@
 		<ul class="a">
 			<li><a href="${pageContext.request.contextPath}/employees/getEmployeesList">사원 목록</a></li>
 			<li><a href="${pageContext.request.contextPath}/departments/getDepartmentsList">부서 목록</a></li>
+			<li><a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=asc">오름차순(limit50)</a>	</li>
+			<li><a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=desc">내림차순(limit50)</a></li>
+			<li><a href="${pageContext.request.contextPath}/salaries/getSalariesStatistics">연봉통계</a></li>
 		</ul>
-	</div>
-	<div>first_name 정렬
-		<a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=asc">오름차순(limit50)</a>	
-		<a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=desc">오름차순(limit50)</a>			
-	</div>
-	<div>
-	 연봉
+
+	 	
 	</div>
 </body>
 </html>
