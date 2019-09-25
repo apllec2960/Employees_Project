@@ -23,12 +23,18 @@ public class GetEmployeesListByPageServlet extends HttpServlet {
 		int rowPerPage = 10; 	//나타낼 행의 수
 		int lastPage = 1;		//마지막 페이지
 		
+		
 		//currentPage가 null값이면  처음 지정한 10으로 나타내고 아니라면 불러온 값을 currentPage에 저장.
 		if(request.getParameter("currentPage")!=null) {	
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		System.out.println("GetEmployeesListByPageServlet param currentPage : "+ currentPage);
 		
+		//리스트페이지에서 선택한 개수를 보여주기 위함. null값이 아니라면 입력된 값입력. 아니면 10저장.
+		if(request.getParameter("rowPerPage")!=null) {
+			rowPerPage = Integer.parseInt(request.getParameter("rowPerPage"));
+		}
+		System.out.println("GetEmployeesListByPageServlet param limit"+ rowPerPage);
 		
 		employeesDao = new EmployeesDao();
 		List<Employees> list = employeesDao.selectEmployeesListByPage(currentPage, rowPerPage); //
@@ -44,6 +50,7 @@ public class GetEmployeesListByPageServlet extends HttpServlet {
 		request.setAttribute("list", list);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("lastPage",lastPage);
+		request.setAttribute("rowPerPage", rowPerPage);
 		
 		request.getRequestDispatcher("/WEB-INF/views/employees/employeesListByPage.jsp").forward(request, response);
 		

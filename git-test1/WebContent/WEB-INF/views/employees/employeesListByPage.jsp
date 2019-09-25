@@ -20,9 +20,22 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<h1>사원목록 페이징</h1>
-	<table>
-		<tr>
+	<h1 class = "text-center">사원목록 페이징
+		<div>
+			<form method="get" action ="${pageContext.request.contextPath}/employees/getEmployeesListByPage?limit=${rowPerPage}">
+				<select name="rowPerPage">
+					<option value="10">10</option>
+					<option value="20">20</option>
+					<option value="30">30</option>
+					<option value="40">40</option>
+					<option value="50">50</option>
+				</select>
+				<button type="submit">확인</button>
+			</form>
+		</div>
+	</h1>
+	<table  class ="table table-bordered text-center">
+		<tr class ="thead-dark">
 			<th>emp_no</th>
 			<th>birth_date</th>
 			<th>first_name</th>
@@ -43,10 +56,10 @@
 	</table>
 	<div>
 		<c:if test="${currentPage > 1 }">	<!-- if문과 같음  if(currentPage >1) -->
-			<a href="${pageContext.request.contextPath}/employees/getEmployeesListByPage?currentPage=${currentPage-1}">이전</a>
+			<a href="${pageContext.request.contextPath}/employees/getEmployeesListByPage?currentPage=${currentPage-1}&rowPerPage=${rowPerPage}">이전</a>
 		</c:if>
 		<c:if test="${currentPage < lastPage }">
-			<a href ="${pageContext.request.contextPath}/employees/getEmployeesListByPage?currentPage=${currentPage+1}">다음</a>
+			<a href ="${pageContext.request.contextPath}/employees/getEmployeesListByPage?currentPage=${currentPage+1}&rowPerPage=${rowPerPage}">다음</a>
 		</c:if>
 	</div>
 </body>
