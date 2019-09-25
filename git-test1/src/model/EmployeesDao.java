@@ -15,6 +15,39 @@ import vo.Employees;
 
 public class EmployeesDao {
 	
+	//사원목록을 나타내는 페이지(10 페이징)
+	public List<Employees> selectEmployeesListByPage(int currentPage, int rowPerPage){
+		List<Employees> list = new ArrayList<Employees>();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		String sql = "SELECT emp_no, birth_date, first_name, last_name, gender, hire_date FROM employees LIMIT ?,?";
+		ResultSet rs = null;
+		try {
+			conn = DBHelper.getConnection();
+			stmt = conn.prepareStatement(sql);
+			int beginRow = 0; // 시작페이지
+			beginRow = (currentPage-1)*rowPerPage;
+			stmt.setInt(1, beginRow);
+			stmt.setInt(2, rowPerPage);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				Employees e = new Employees();
+				e.setEmpNo(rs.getInt("emp_no"));
+				e.setBirthDate(rs.getString("birth_date"));
+				e.setFirstName(rs.getString("first_name"));
+				e.setLastName(rs.getString("last_name"));
+				e.setGender(rs.getString("gender"));
+				e.setHireDate(rs.getString("hire_date"));
+				list.add(e);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBHelper.close(conn, stmt, rs);
+		}
+		return list;
+	}
+	
 	//성별별 수를 구하는 메소드 
 	public List<Map<String, Object>> selectEmployeesCountByGender(){
 		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
