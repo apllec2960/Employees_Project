@@ -24,11 +24,29 @@
         margin-left: auto;
         margin-right: auto;
 	}
+	table {
+  border-collapse: collapse;
+  width: 100%;
+}
 </style>
 </head>
 <body>
 	<h1 class = "text-center">Index</h1>
-	
+	<div>
+		<table class ="table-border">
+			<tr>
+				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesList">사원 목록(limit 10)</a></td>
+				<td><a href="${pageContext.request.contextPath}/departments/getDepartmentsList">부서 목록</a></td>
+				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=asc">오름차순(limit50)</a></td>
+				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=desc">내림차순(limit50)</a></td>
+				<td><a href="${pageContext.request.contextPath}/salaries/getSalariesStatistics">연봉통계</a></td>
+				<td><a href="${pageContext.request.contextPath}/titles/getTitlesListDistinct">업무목록(Distinct)</a></td>
+				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesCountByGender">사원 수(성별 group by gender)</a></td>
+				<td><a href="${pageContext.request.contextPath}/departments/getDepartmentsCountByDeptNo">부서별 인원</a></td>
+				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesListByPage">사원목록(10paging)</a></td>
+			</tr>
+		</table>
+	</div>
 	<div>
 		<table class="table table-bordered">
 			<tr class= "text-center">
@@ -66,25 +84,12 @@
 		<form method="post" action="${pageContext.request.contextPath}/employees/getEmployeesListBetween">
 			<input type = "number" name="begin">~<input type="number" name="end">
 			<button type="submit">사원목록 beween ... and ...</button>
-			(${MaxEmpNo}~${MinEmpNo})
+			(${maxEmpNo}~${minEmpNo})
 		</form>
 		표현식 :employees table total row Count : <%=request.getAttribute("employeesRowCount")%>
 		<br>
 		el : employees table total row Count : ${employeesRowCount}
 	</div>
 	
-	<div >
-		<ul class="a">
-			<li><a href="${pageContext.request.contextPath}/employees/getEmployeesList">사원 목록(limit 10)</a></li>
-			<li><a href="${pageContext.request.contextPath}/departments/getDepartmentsList">부서 목록</a></li>
-			<li><a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=asc">오름차순(limit50)</a>	</li>
-			<li><a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=desc">내림차순(limit50)</a></li>
-			<li><a href="${pageContext.request.contextPath}/salaries/getSalariesStatistics">연봉통계</a></li>
-			<li><a href="${pageContext.request.contextPath}/titles/getTitlesListDistinct">업무목록</a></li>
-			<li><a href="${pageContext.request.contextPath}/employees/getEmployeesCountByGender">사원 수(성별 group by gender)</a></li>
-			<li><a href="${pageContext.request.contextPath}/departments/getDepartmentsCountByDeptNo">부서별 인원</a></li>
-			<li><a href="${pageContext.request.contextPath}/employees/getEmployeesListByPage">사원목록(10paging)</a></li>
-		</ul>
-	</div>
 </body>
 </html>

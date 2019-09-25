@@ -37,8 +37,8 @@ public class IndexServlet extends HttpServlet {
 		System.out.println("employeesRowCount : "+employeesRowCount);
 		request.setAttribute("employeesRowCount", employeesRowCount);
 		
-		int MaxEmpNo = employeesDao.selectEmpNo("max");
-		int MinEmpNo = employeesDao.selectEmpNo("min");
+		int maxEmpNo = employeesDao.selectEmpNo("max");
+		int minEmpNo = employeesDao.selectEmpNo("min");
 		
 		// /WEB-INF/views/index.jsp
 		/* 방법 1

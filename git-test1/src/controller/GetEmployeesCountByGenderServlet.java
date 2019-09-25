@@ -22,8 +22,9 @@ public class GetEmployeesCountByGenderServlet extends HttpServlet {
 		employeesDao = new EmployeesDao();
 		List<Map<String, Object>> list = employeesDao.selectEmployeesCountByGender();
 		
+		System.out.println(list);
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/WEB-INF/views/employees/employeesCountByGender").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/employees/employeesCountByGender.jsp").forward(request, response);
 	}
 
 }
