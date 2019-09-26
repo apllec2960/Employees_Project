@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.EmployeesDao;
 import vo.Employees;
@@ -23,6 +24,12 @@ public class GetEmployeesListByPageServlet extends HttpServlet {
 		int rowPerPage = 10; 	//나타낼 행의 수
 		int lastPage = 1;		//마지막 페이지
 		
+		// 로그인이 안되있다면 로그인 페이지로.
+		HttpSession session = request.getSession();//첫 요청할때 session을 받아옴.
+		if(session.getAttribute("sessionEmpNo") == null) { //처음 접속이거나 로그인을 하지않았거나..
+			response.sendRedirect(request.getContextPath()+"/login");//서버가 아닌 내가 요청하기 때문에 request.getContextPath().
+			return;
+		}
 		
 		//currentPage가 null값이면  처음 지정한 10으로 나타내고 아니라면 불러온 값을 currentPage에 저장.
 		if(request.getParameter("currentPage")!=null) {	

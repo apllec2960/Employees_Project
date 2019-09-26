@@ -15,6 +15,36 @@ import vo.Employees;
 
 public class EmployeesDao {
 	
+	//로그인 정보값을 가져오는 메소드.
+	//로그인 메소드
+	public int login(Employees employees) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql ="SELECT emp_no, first_name, last_name FROM employees where first_name = ? and last_name=? and emp_no =?";
+		String firstName = employees.getFirstName();
+		String lastName = employees.getLastName();
+		int empNo = employees.getEmpNo();
+		int sessionEmp = 0;
+		try {
+			conn = DBHelper.getConnection();
+			stmt = conn.prepareStatement(sql); 
+			stmt.setString(1, firstName);
+			stmt.setString(2, lastName);
+			stmt.setInt(3, empNo);
+			rs= stmt.executeQuery();
+			//System.out.println("rs :" +rs);
+			if(rs.next()) {
+				sessionEmp = rs.getInt("emp_no");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBHelper.close(conn, stmt, rs);
+		}
+		return sessionEmp;
+	}
+	
 	//사원목록을 나타내는 페이지(10 페이징)
 	public List<Employees> selectEmployeesListByPage(int currentPage, int rowPerPage){
 		List<Employees> list = new ArrayList<Employees>();

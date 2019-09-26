@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,6 +33,14 @@
 </head>
 <body>
 	<h1 class = "text-center">Index</h1>
+	<c:if test= "${sessionEmpNo == null}">
+		<a href="${pageContext.request.contextPath}/login">로그인</a>  <!-- LoginServlet -->
+	</c:if>
+	
+	<c:if test="${sessionEmpNo != null }">
+		<a href="${pageContext.request.contextPath}/logout">로그아웃</a>  <!-- LogoutServlet -->
+	</c:if>
+	
 	<div>
 		<table class ="table-border">
 			<tr>
