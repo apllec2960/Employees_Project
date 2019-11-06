@@ -19,7 +19,7 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="container">
 <h1 class="text-center">사원목록</h1>
 <a href = "${pageContext.request.contextPath}/">홈으로</a>
 	<div class="text-right">

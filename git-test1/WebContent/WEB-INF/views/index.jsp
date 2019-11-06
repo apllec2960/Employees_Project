@@ -29,35 +29,40 @@
   border-collapse: collapse;
   width: 100%;
 }
+	.font-b{
+	color: black;
+	}
+
 </style>
 </head>
-<body>
+<body class="container">
 	<h1 class = "text-center">Index</h1>
 	<c:if test= "${sessionEmpNo == null}">
-		<a href="${pageContext.request.contextPath}/login">로그인</a>  <!-- LoginServlet -->
+		<a href="${pageContext.request.contextPath}/login" class="font-b">로그인</a>  <!-- LoginServlet -->
 	</c:if>
 	
 	<c:if test="${sessionEmpNo != null }">
-		<a href="${pageContext.request.contextPath}/logout">로그아웃</a>  <!-- LogoutServlet -->
+		<a href="${pageContext.request.contextPath}/logout" class="font-b">로그아웃</a>  <!-- LogoutServlet -->
 	</c:if>
 	
 	<div>
-		<table class ="table-border">
-			<tr>
-				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesList">사원 목록(limit 10)</a></td>
-				<td><a href="${pageContext.request.contextPath}/departments/getDepartmentsList">부서 목록</a></td>
-				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=asc">오름차순(limit50)</a></td>
-				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=desc">내림차순(limit50)</a></td>
-				<td><a href="${pageContext.request.contextPath}/salaries/getSalariesStatistics">연봉통계</a></td>
-				<td><a href="${pageContext.request.contextPath}/titles/getTitlesListDistinct">업무목록(Distinct)</a></td>
-				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesCountByGender">사원 수(성별 group by gender)</a></td>
-				<td><a href="${pageContext.request.contextPath}/departments/getDepartmentsCountByDeptNo">부서별 인원</a></td>
-				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesListByPage">사원목록(10paging)</a></td>
+		<table class ="table table-border" style="text-align: center;">
+			<tr >
+				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesList" class="font-b">사원 목록(limit 10)</a></td>
+				<td><a href="${pageContext.request.contextPath}/departments/getDepartmentsList" class="font-b">부서 목록</a></td>
+				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=asc" class="font-b">오름차순(limit50)</a></td>
+				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=desc" class="font-b">내림차순(limit50)</a></td>
+				<td><a href="${pageContext.request.contextPath}/salaries/getSalariesStatistics" class="font-b">연봉통계</a></td>
+				<td><a href="${pageContext.request.contextPath}/titles/getTitlesListDistinct" class="font-b">업무목록(Distinct)</a></td>
+				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesCountByGender" class="font-b">사원 수(성별 group by gender)</a></td>
+				<td><a href="${pageContext.request.contextPath}/departments/getDepartmentsCountByDeptNo" class="font-b">부서별 인원</a></td>
+				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesListByPage" class="font-b">사원목록(페이징)</a></td>
 			</tr>
 		</table>
 	</div>
+		<hr>
 	<div>
-		<table class="table table-bordered">
+		<table class="table table-bordered table-hover" >
 			<tr class= "text-center">
 				<th>테이블 이름</th>
 				<th>전체 행의 수</th>
@@ -92,8 +97,8 @@
 	<div class="text-center">
 		<form method="post" action="${pageContext.request.contextPath}/employees/getEmployeesListBetween">
 			<input type = "number" name="begin">~<input type="number" name="end">
-			<button type="submit">사원목록 beween ... and ...</button>
-			(${maxEmpNo}~${minEmpNo})
+			<button type="submit" class="btn-primary">사원목록 검색</button>
+			${maxEmpNo}~${minEmpNo}
 		</form>
 		표현식 :employees table total row Count : <%=request.getAttribute("employeesRowCount")%>
 		<br>

@@ -19,14 +19,14 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="container">
 	<h1> 사원수(gender)</h1>
 	<a href = "${pageContext.request.contextPath}/">홈으로</a>
 	
 	<table class ="table table-bordered text-center">
 		<tr class="thead-dark text-center">
-			<th>Gender</th>
-			<th>count(gender)</th>
+			<th>성별</th>
+			<th>사원 수</th>
 		</tr>
 		<c:forEach var="map" items="${list}"><!--  var = "변수" items ="list에 속성을 저장한 값을 가져옴" -->
 			<tr>

@@ -20,9 +20,10 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="container">
 	<h1 class="text-center">부서목록</h1>
 	<a href ="${pageContext.request.contextPath}/">홈으로</a>
+	<hr>
 	<!-- List<Departments> list = (List<Departments>)request.getAttribute("list"); -->
 	 <!-- ${list} -->
 	<table class="table table-bordered">

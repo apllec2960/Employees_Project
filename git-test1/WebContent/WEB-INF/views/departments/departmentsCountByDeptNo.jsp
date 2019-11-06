@@ -19,15 +19,15 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
-<body>
-	<h1 class= "text-center">부서별 인원수</h1>
+<body class="container">
+	<h1 class= "text-center">부서 인원수</h1>
 	<a href = "${pageContext.request.contextPath}/">홈으로</a>
 		
 	<table class ="table table-bordered text-center">
 		<tr class="thead-dark">
-			<th>deptNo</th>
-			<th>deptName</th>
-			<th>Count(deptNo)</th>
+			<th>부서번호</th>
+			<th>부서명</th>
+			<th>부서별 사원 수</th>
 		</tr>
 		<c:forEach var="i" items="${list }">
 		<tr>

@@ -18,17 +18,17 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="container">
 	<h1 class= "text-center">연봉 통계(count sum avg max min std)</h1>
 	<a href = "${pageContext.request.contextPath}/">홈으로</a>
 	<table class ="table table-bordered text-center">
 		<tr class="thead-dark">
-			<th>COUNT</th>
-			<th>SUM</th>
-			<th>AVG</th>
-			<th>MAX</th>
-			<th>MIN</th>
-			<th>STD</th>
+			<th>모든 사원 수(COUNT)</th>
+			<th>연봉 합계(SUM)</th>
+			<th>평균 연봉(AVG)</th>
+			<th>최고 연봉(MAX)</th>
+			<th>최소 연봉(MIN)</th>
+			<th>연봉 편차(STD)</th>
 		</tr>
 		<tr>
 			<td>${map.COUNT }</td>

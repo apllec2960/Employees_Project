@@ -19,7 +19,7 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="container">
 	<h1 class = "text-center">사원목록 페이징
 		<div>
 			<form method="get" action ="${pageContext.request.contextPath}/employees/getEmployeesListByPage?limit=${rowPerPage}">
@@ -36,12 +36,12 @@
 	</h1>
 	<table  class ="table table-bordered text-center">
 		<tr class ="thead-dark">
-			<th>emp_no</th>
-			<th>birth_date</th>
-			<th>first_name</th>
-			<th>last_name</th>
-			<th>gender</th>
-			<th>hire_date</th>
+			<th>사원번호</th>
+			<th>생년월일</th>
+			<th>이름</th>
+			<th>성</th>
+			<th>성별</th>
+			<th>입사일</th>
 		</tr>
 		<c:forEach var="i" items = "${list }">
 			<tr>
