@@ -39,41 +39,44 @@ public class IndexServlet extends HttpServlet {
 			return;
 		}
 		
-		//EmployeesDao employeesDao = new EmployeesDao();
+		//employees 수를 가져옴
 		employeesDao = new EmployeesDao();	//모델(Dao)을 호출해서 값을 가져옴.
 		int employeesRowCount =  employeesDao.selectEmployeesCount(); //employees 사원의 모든 수를 employeesRowCount변수에 저장.
 		System.out.println("employeesRowCount : "+employeesRowCount);
 		request.setAttribute("employeesRowCount", employeesRowCount);
 		
+		//사원번호 조회(큰번호, 작은번호)
 		int maxEmpNo = employeesDao.selectEmpNo("max");
 		int minEmpNo = employeesDao.selectEmpNo("min");
+		request.setAttribute("maxEmpNo", maxEmpNo);
+		request.setAttribute("minEmpNo", minEmpNo);
 		
-		// /WEB-INF/views/index.jsp
-		/* 방법 1
-		 * RequestDispatcher rd =
-		 * request.getRequestDispatcher("/WEB-INF/views/index.jsp");
-		 * rd.forward(request,response);
-		 */
+		
+		//departments 수를 가져옴
 		departmentsDao = new DepartmentsDao();
 		int departmentsRowCount = departmentsDao.selectDepartmentsRowCount();
 		System.out.println("indexServlet departmentsRowCount : "+departmentsRowCount);
 		request.setAttribute("departmentsRowCount", departmentsRowCount);
 		
+		//deptEmp 수를 가져옴
 		deptEmpDao = new DeptEmpDao();
 		int deptEmpRowCount = deptEmpDao.selectDeptEmpRowCount();
 		System.out.println("indexServlet deptEmpRowCount : "+deptEmpRowCount);
 		request.setAttribute("deptEmpRowCount", deptEmpRowCount);
 		
+		//deptManager 수를 가져옴
 		deptManagerDao = new DeptManagerDao();
 		int deptManagerRowCount = deptManagerDao.selectDeptManagerRowCount();
 		System.out.println("indexServlet deptManagerRowCount : "+deptManagerRowCount);
 		request.setAttribute("deptManagerRowCount",deptManagerRowCount);
 		
+		//salaries 수를 가져옴
 		salariesDao = new SalariesDao();
 		int salariesRowCount = salariesDao.selectSalariesRowCount();
 		System.out.println("indexServlet salariesRowCount : "+salariesRowCount);
 		request.setAttribute("salariesRowCount", salariesRowCount );
 		
+		//titles 수를 가져옴
 		titlesDao = new TitlesDao();
 		int titlesRowCount = titlesDao.selectTitlesRowCount();
 		System.out.println("indexServlet titlesRowCount : "+titlesRowCount);

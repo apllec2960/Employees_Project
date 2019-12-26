@@ -23,24 +23,33 @@
 	<div align="center">
 	<h1 class="text-center">로그인</h1>
 	<hr>
-
-		<form method="post" action="${pageContext.request.contextPath }/login">
-			<table width="30%">
-				<tr>
-					<td width="30%">이름 </td>
-					<td><input type="text" name="firstName" value="Bezalel"></td>
-				</tr>
-				<tr>
-					<td>성  </td>
-					<td><input type="text" name="lastName" value="Simmel"></td>
-				</tr>
-				<tr>
-					<td>사원번호 </td>
-					<td><input type="text" name="empNo" value="10002"></td>
-				</tr>
-			</table>
-			<button type="submit" class="btn btn-primary">확인</button>
-		</form>
+		<!-- login Form -->
+		<div class="card shadow pt-2 px-2 mx-5 text-left" style="width: 380px"> 
+			<form class="was-validated card-body" action="${pageContext.request.contextPath }/login" method="post">
+			  <div class="form-group">
+			    <label class="text-dark font-weight-bold" for="id">이름</label>
+			    <input type="text" class="form-control form-control-sm" placeholder="firstName" value='Bezalel' name="firstName" required>
+			    <div class="valid-feedback">좋아요.</div>
+			    <div class="invalid-feedback">올바른 이메일을 입력해주세요.</div>
+			  </div>
+			  
+			  <div class="form-group">
+			    <label class="text-dark font-weight-bold" for="id">성</label>
+			    <input type="text" class="form-control form-control-sm" placeholder="lastName" value='Simmel' name="lastName" required>
+			    <div class="valid-feedback">좋아요.</div>
+			    <div class="invalid-feedback">올바른 이메일을 입력해주세요.</div>
+			  </div> 
+			  
+			  <div class="form-group">
+			    <label class="text-dark font-weight-bold" for="pw"><span class="mr-4">사원번호</span>
+			    </label> 					   
+			    <input type="text" class="form-control form-control-sm" value='10002' placeholder="empNo" name="empNo" required>
+			    <div class="valid-feedback">좋아요.</div>
+			    <div class="invalid-feedback">비밀번호를 입력해주세요.</div>
+			  </div> 
+			  <button type="submit" class="btn btn-block btn-primary join" id="login">로그인</button> 
+			</form>  
+		</div>
 	</div>
 </body>
 </html>

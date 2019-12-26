@@ -163,6 +163,10 @@ public class EmployeesDao {
 			conn = DBHelper.getConnection();
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
+		if(rs.next()) {
+			empNo = rs.getInt(1);
+		}
+		System.out.println("empNo"+empNo);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -174,7 +178,7 @@ public class EmployeesDao {
 				e.printStackTrace();
 			}
 		}
-		return 0;
+		return empNo;
 	}
 	
 	//정렬된 리스트를 보여주는 메소드 : 조건은 first_name

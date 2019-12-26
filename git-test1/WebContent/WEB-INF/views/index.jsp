@@ -36,74 +36,97 @@
 </style>
 </head>
 <body class="container">
-	<h1 class = "text-center">Index</h1>
+
+	<!-- 로그인 버튼 -->
 	<c:if test= "${sessionEmpNo == null}">
-		<a href="${pageContext.request.contextPath}/login" class="font-b">로그인</a>  <!-- LoginServlet -->
+		<a href="${pageContext.request.contextPath}/login" class="font-b" style="float: right;">로그인</a>  <!-- LoginServlet -->
 	</c:if>
 	
 	<c:if test="${sessionEmpNo != null }">
-		<a href="${pageContext.request.contextPath}/logout" class="font-b">로그아웃</a>  <!-- LogoutServlet -->
+		<a href="${pageContext.request.contextPath}/logout" class="font-b" style="float: right;">로그아웃</a>  <!-- LogoutServlet -->
 	</c:if>
+
+	<h1 class = "text-center">EMPLOYEES</h1>
 	
+	<!-- 카테고리 설정 -->
+	<div class="text-center small">
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+			<ul class="navbar-nav">
+			    <li class="nav-item">
+			     	 <a class="nav-link" href="${pageContext.request.contextPath}/employees/getEmployeesList" class="font-b">사원 목록(limit 10)</a>
+			    </li>
+			    <li class="nav-item">
+			     	 <a class="nav-link" href="${pageContext.request.contextPath}/departments/getDepartmentsList" class="font-b">부서 목록</a>
+			    </li>
+			    <li class="nav-item">
+			     	 <a class="nav-link" href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=asc" class="font-b">오름차순(limit50)</a>
+			    </li>
+			    <li class="nav-item">
+			     	 <a class="nav-link" href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=desc" class="font-b">내림차순(limit50)</a>
+			    </li>
+			    <li class="nav-item">
+			      	<a class="nav-link" href="${pageContext.request.contextPath}/salaries/getSalariesStatistics" class="font-b">연봉통계</a></td>
+			    </li>
+			    <li class="nav-item">
+			     	 <a class="nav-link" href="${pageContext.request.contextPath}/titles/getTitlesListDistinct" class="font-b">업무목록(Distinct)</a>
+			    </li>
+			    <li class="nav-item">
+			     	 <a class="nav-link" href="${pageContext.request.contextPath}/employees/getEmployeesCountByGender" class="font-b">사원 수(성별 group by gender)</a>
+			    </li>
+			    <li class="nav-item">
+			      	<a class="nav-link" href="${pageContext.request.contextPath}/departments/getDepartmentsCountByDeptNo" class="font-b">부서별 인원</a>
+			    </li>
+			    <li class="nav-item">
+			     	 <a class="nav-link" href="${pageContext.request.contextPath}/employees/getEmployeesListByPage" class="font-b">사원목록(페이징)</a>
+			    </li>
+			 </ul>
+			
+			<!-- 사원번호로 조회  -->
+			 <form method="post" class="form-inline" action="${pageContext.request.contextPath}/employees/getEmployeesListBetween">
+				<input type = "number" class ="form-control mr-sm-2" style="width: 30%;" name="begin" placeholder="${minEmpNo}">~<input type="number" class="form-control mr-sm-2" style="width: 30%;" name="end" placeholder="${maxEmpNo}">
+				<button type="submit" class="btn btn-light btn-outline-secondary" style="color: black;">사원목록 검색</button>
+			 </form>
+		</nav>
+ 	</div>
+ 	
 	<div>
-		<table class ="table table-border" style="text-align: center;">
-			<tr >
-				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesList" class="font-b">사원 목록(limit 10)</a></td>
-				<td><a href="${pageContext.request.contextPath}/departments/getDepartmentsList" class="font-b">부서 목록</a></td>
-				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=asc" class="font-b">오름차순(limit50)</a></td>
-				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=desc" class="font-b">내림차순(limit50)</a></td>
-				<td><a href="${pageContext.request.contextPath}/salaries/getSalariesStatistics" class="font-b">연봉통계</a></td>
-				<td><a href="${pageContext.request.contextPath}/titles/getTitlesListDistinct" class="font-b">업무목록(Distinct)</a></td>
-				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesCountByGender" class="font-b">사원 수(성별 group by gender)</a></td>
-				<td><a href="${pageContext.request.contextPath}/departments/getDepartmentsCountByDeptNo" class="font-b">부서별 인원</a></td>
-				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesListByPage" class="font-b">사원목록(페이징)</a></td>
-			</tr>
+		<h3>Employees Database 테이블 정보</h2>
+	</div>
+	
+	
+	<div>	
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Employees</th>
+					<th>Departments</th>
+					<th>DeptEmp</th>
+					<th>DeptManage</th>
+					<th>Salaries</th>
+					<th>titles</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>${employeesRowCount}</td>
+					<td>${departmentsRowCount}</td>
+					<td>${deptEmpRowCount}</td>
+					<td>${deptManagerRowCount}</td>
+					<td>${salariesRowCount}</td>
+					<td>${titlesRowCount}</td>				
+				</tr>
+			</tbody>			
 		</table>
 	</div>
-		<hr>
-	<div>
-		<table class="table table-bordered table-hover" >
-			<tr class= "text-center">
-				<th>테이블 이름</th>
-				<th>전체 행의 수</th>
-			</tr>
-			<tr>
-				<td>Employees</td>
-				<td>${employeesRowCount}</td>
-			</tr>
-			<tr>
-				<td>Departments</td>
-				<td>${departmentsRowCount}</td>
-			</tr>
-			<tr>
-				<td>Dept_emp</td>
-				<td>${deptEmpRowCount}</td>
-			</tr>
-			<tr>
-				<td>Dept_manager</td>
-				<td>${deptManagerRowCount}</td>
-			</tr>
-			<tr>
-				<td>Salaries</td>
-				<td>${salariesRowCount}</td>
-			</tr>
-			<tr>
-				<td>Titles</td>
-				<td>${titlesRowCount}</td>
-			</tr>
-		</table>
-	</div>
-	
-	<div class="text-center">
-		<form method="post" action="${pageContext.request.contextPath}/employees/getEmployeesListBetween">
-			<input type = "number" name="begin">~<input type="number" name="end">
-			<button type="submit" class="btn-primary">사원목록 검색</button>
-			${maxEmpNo}~${minEmpNo}
-		</form>
-		표현식 :employees table total row Count : <%=request.getAttribute("employeesRowCount")%>
-		<br>
-		el : employees table total row Count : ${employeesRowCount}
-	</div>
-	
-</body>
+	<footer>
+		<div style="background: gray;">
+		asdassad
+		</div>
+	</footer>
+	</body>
 </html>
+<%-- 
+		#표현식 :employees table total row Count : <%=request.getAttribute("employeesRowCount")%>
+		<br>
+		#el : employees table total row Count : ${employeesRowCount}
+--%>	
