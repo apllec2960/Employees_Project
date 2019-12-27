@@ -20,20 +20,31 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body class="container">
-	<h1 class = "text-center">사원목록 페이징
-		<div>
-			<form method="get" action ="${pageContext.request.contextPath}/employees/getEmployeesListByPage?limit=${rowPerPage}">
-				<select name="rowPerPage">
-					<option value="10">10</option>
-					<option value="20">20</option>
-					<option value="30">30</option>
-					<option value="40">40</option>
-					<option value="50">50</option>
-				</select>
-				<button type="submit">확인</button>
-			</form>
-		</div>
-	</h1>
+	
+	<!-- 로그인/로그아웃 버튼 및 상단 바 -->
+	<jsp:include page="../navbar.jsp"></jsp:include>
+	
+	<div class="mt-5 pt-3">	
+	<strong>Employees</strong>
+	<div>
+		<h3>Employees Database 사원목록 페이징</h3>
+	</div>
+	
+	<!-- 보여줄 행의 수 선택 -->
+	<div>
+		<form method="get" action ="${pageContext.request.contextPath}/employees/getEmployeesListByPage?limit=${rowPerPage}">
+			<select name="rowPerPage">
+				<option value="10">10</option>
+				<option value="20">20</option>
+				<option value="30">30</option>
+				<option value="40">40</option>
+				<option value="50">50</option>
+			</select>
+			<button type="submit">확인</button>
+		</form>
+	</div>
+	
+	<!-- 리스트 출력 테이블 -->
 	<table  class ="table table-bordered text-center">
 		<tr class ="thead-dark">
 			<th>사원번호</th>
@@ -54,13 +65,16 @@
 			</tr>
 		</c:forEach>
 	</table>
+	
+	<!-- 페이징 버튼 -->
 	<div>
 		<c:if test="${currentPage > 1 }">	<!-- if문과 같음  if(currentPage >1) -->
-			<a href="${pageContext.request.contextPath}/employees/getEmployeesListByPage?currentPage=${currentPage-1}&rowPerPage=${rowPerPage}">이전</a>
+			<a class="btn btn-secondary" href="${pageContext.request.contextPath}/employees/getEmployeesListByPage?currentPage=${currentPage-1}&rowPerPage=${rowPerPage}">이전</a></button>
 		</c:if>
 		<c:if test="${currentPage < lastPage }">
-			<a href ="${pageContext.request.contextPath}/employees/getEmployeesListByPage?currentPage=${currentPage+1}&rowPerPage=${rowPerPage}">다음</a>
+			<a class="btn btn-secondary" href ="${pageContext.request.contextPath}/employees/getEmployeesListByPage?currentPage=${currentPage+1}&rowPerPage=${rowPerPage}">다음</a>
 		</c:if>
+	</div>
 	</div>
 </body>
 </html>

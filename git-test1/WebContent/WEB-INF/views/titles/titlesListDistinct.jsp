@@ -17,15 +17,32 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<style>
+	.wrapper {
+		    display: grid;
+		    grid-template-columns: 20% 20% 20% 20% 20%;
+		    grid-template-rows: 10vh 10vh 10vh 10vh 10vh;
+		}
+</style>
 </head>
 <body class="container">
-	<h1 class="text-center">업무목록 (DISTINCT)<a href = "${pageContext.request.contextPath}/">홈으로</a></h1>
-	<table class="table text-center">
-		<ul>
+
+	<!-- 로그인/로그아웃 버튼 및 상단 바 -->
+	<jsp:include page="../navbar.jsp"></jsp:include>
+	
+	<div class="mt-5 pt-3">	
+	<strong>Employees</strong>
+	<div>
+		<h3>Employees Database 업무목록 (DISTINCT)</h3>
+	</div>
+
+	<a href = "${pageContext.request.contextPath}/">홈으로</a>
+	<div class="wrapper card">
 			<c:forEach var = "row" items ="${list}">
-				<li>${row}</li>
+				<p>${row}</p>
 			</c:forEach>
-		</ul>
-	</table>
+	</div>
+	</div>
 </body>
 </html>

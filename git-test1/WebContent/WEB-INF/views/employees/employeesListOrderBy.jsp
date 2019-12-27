@@ -20,8 +20,18 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body class="container">
-<h1 class="text-center">사원목록</h1>
-<a href = "${pageContext.request.contextPath}/">홈으로</a>
+
+	<!-- 로그인/로그아웃 버튼 및 상단 바 -->
+	<jsp:include page="../navbar.jsp"></jsp:include>
+	
+	<div class="mt-5 pt-3">	
+	<strong>Employees</strong>
+	<div>
+		<h3>Employees Database 사원목록</h3>
+	</div>
+
+	<a href = "${pageContext.request.contextPath}/">홈으로</a>
+	
 	<div class="text-right">
 		<form method="get" action="${pageContext.request.contextPath}/employees/getEmployeesList">
 			<select name="limit">	 <!-- 페이지당 보여줄 개수선택 -->
@@ -57,6 +67,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
+	</div>
 	</div>
 </body>
 </html>

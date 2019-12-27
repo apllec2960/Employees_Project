@@ -21,7 +21,16 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body class="container">
-	<h1 class="text-center">부서목록</h1>
+
+	<!-- 로그인/로그아웃 버튼 및 상단 바 -->
+	<jsp:include page="../navbar.jsp"></jsp:include>
+	
+	<div class="mt-5 pt-3">	
+	<strong>Employees</strong>
+	<div>
+		<h3>Employees Database 부서목록</h3>
+	</div>
+
 	<a href ="${pageContext.request.contextPath}/">홈으로</a>
 	<hr>
 	<!-- List<Departments> list = (List<Departments>)request.getAttribute("list"); -->
@@ -42,5 +51,6 @@
 			</c:forEach> <!--  } -->
 		</tbody>
 	</table>
+	</div>
 </body>
 </html>

@@ -19,7 +19,16 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body class="container">
-	<h1 class= "text-center">연봉 통계(count sum avg max min std)</h1>
+
+	<!-- 로그인/로그아웃 버튼 및 상단 바 -->
+	<jsp:include page="../navbar.jsp"></jsp:include>
+	
+	<div class="mt-5 pt-3">	
+	<strong>Employees</strong>
+	<div>
+		<h3>Employees Database 연봉 통계(count sum avg max min std)</h3>
+	</div>
+
 	<a href = "${pageContext.request.contextPath}/">홈으로</a>
 	<table class ="table table-bordered text-center">
 		<tr class="thead-dark">
@@ -39,5 +48,6 @@
 			<td>${map.STD }</td>
 		</tr>
 	</table>
+	</div>
 </body>
 </html>

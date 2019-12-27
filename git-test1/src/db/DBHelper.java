@@ -10,6 +10,7 @@ public class DBHelper {
 	//maria db와 연결시켜주는 메소드
 	public static Connection getConnection() throws Exception {
 		Class.forName("org.mariadb.jdbc.Driver");
+		//Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/e2garden","e2garden","dlwjddnjs12!@");
 		Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/employees","root","java1234");
 		return conn;
 	}
