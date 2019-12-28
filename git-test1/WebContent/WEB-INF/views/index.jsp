@@ -8,6 +8,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<!-- chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -70,6 +73,13 @@
 			</tbody>			
 		</table>
 	</div>
+	
+	<!-- 차트출력(부서별 인원수 ) -->
+	<div class="card">
+	<canvas id="myChart"></canvas>
+	
+	</div>
+	
 	<footer>
 		<div style="background: gray;">
 
@@ -77,6 +87,49 @@
 	</footer>
 	</body>
 </html>
+<script>
+	//chart.js bar  
+	var ctx = document.getElementById('myChart')
+	//부서별 인원수 배열
+	var deptEmpCount = [0,0,0,0,0,0,0,0,0];
+	//부서명 배열
+	var labelName = ["","","","","","","","",""];
+	var objson;
+	$.ajax({
+		url : "${pageContext.request.contextPath}/deptEmp/GetDepartmentEmpServlet",
+		method : "post",
+		success : function(json){
+			console.log("chart",json)
+			//*jsonArray - JSON 파싱
+			objson = JSON.parse(json);
+			console.log(objson)
+			
+			$(objson).each(function(index, item){
+				deptEmpCount[index] = item.count;
+				labelName[index] = item.departments.deptName;
+			}); 
+			console.log(deptEmpCount,"deptEmpCount")
+			chart.update();
+		},
+	})
+	
+	var chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labelName,
+        datasets: [{
+            label: '부서별 인원 수',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: deptEmpCount,
+        }],
+    },
+
+    // Configuration options go here
+    options: {}
+});
+	
+</script>
 <%-- 
 		#표현식 :employees table total row Count : <%=request.getAttribute("employeesRowCount")%>
 		<br>

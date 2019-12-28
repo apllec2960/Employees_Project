@@ -61,8 +61,8 @@ public class DepartmentsDao {
 			}finally {
 				DBHelper.close(conn, stmt, rs);
 			}
-			System.out.println(count);
-			return count;
+				System.out.println(count);
+				return count;
 			}
 	
 	//Departments 테이블의 리스트를 출력하는 메소드
