@@ -119,7 +119,7 @@
         labels: labelName,
         datasets: [{
             label: '부서별 인원 수',
-            backgroundColor: 'rgb(255, 99, 132)',
+            backgroundColor: '#bdc3c7',
             borderColor: 'rgb(255, 99, 132)',
             data: deptEmpCount,
         }],
